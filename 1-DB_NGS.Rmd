@@ -511,8 +511,8 @@ Podemos descargar los datos que se encuentran en el material supplementario
 
 ```{r}
 # fetch_files TRUE, then actually download the files
-# supp <- getGEOSuppFiles("GSE59760", fetch_files = TRUE)
-sfile <-  "/Users/user/Documents/Doctorado/Courses/Taught/Bioinfo2/GSE59760/GSE59760_supplementations_rnaseq.csv.gz"
+# supp <- getGEOSuppFiles("GSE59760", fetch_files = TRUE, baseDir = "../data_download")
+sfile <-  "../data_download/GSE59760/GSE59760_supplementations_rnaseq.csv.gz"
 
 #Leer el archivo descargado
 csv <- read.csv(sfile, row.names = 1)
@@ -646,11 +646,12 @@ fasterq-dump SRR000001 -O .
 
 ---
 
-## B) Descarga de datos Curdos: .content-box-purple[.black[E-utilities]] y .content-box-purple[.black[SRA Toolkit]]
 
-Podemos ocupar las dos herramientas para descargar los archivos en formato fasta
+### B) Descarga de datos Curdos: .content-box-purple[.black[E-utilities]] y .content-box-purple[.black[SRA Toolkit]]
 
 .scroll-output[.pre[
+Podemos ocupar las dos herramientas para descargar los archivos en formato fasta
+
 
 Podemos ocupar `E-utilities`para obterner los SRR ids, usando el id de [`SRP044833`](https://trace.ncbi.nlm.nih.gov/Traces/study/?acc=SRP044833).
 
@@ -665,7 +666,7 @@ esearch -db sra -query "SRP044833" |  esummary -format runinfo -mode xml | ./xtr
 ```
 
 
-Ahora podemos usar la funcion de `fastq-dump` para descargar los fasta, en este ejemplo solo descargamos las 10 primeras secuencias usando `xargs fastq-dump -X 10 --split-files`
+Ahora podemos usar la funcion de `fastq-dump` para descargar los fasta, en este ejemplo solo descargamos las 10 primeras secuencias usando `xargs fastq-dump -X 10 --split-files`.
 
 ```{bash eval=FALSE}
 esearch -db sra -query "SRP044833" |  efetch -format docsum |./xtract.Linux -pattern Runs -ACC @acc  -element "&ACC" | xargs fastq-dump -X 10 --split-files
@@ -678,6 +679,8 @@ esearch -db sra -query "SRP044833" |  efetch -format docsum |./xtract.Linux -pat
 
 
 ## B) Descarga de datos Curdos: .content-box-purple[.black[library(SRAdb)]]
+
+.scroll-output[.pre[
 
 También podemos descargarlos usando el paquete de `SRAdb` de `R`. Para mayores
 referencias checar la vigetta del paquete. 
@@ -705,20 +708,13 @@ rs <- dbGetQuery(sra_con, paste( "select study_accession,
  study_title from study where",
  "study_description like 'Transcriptome%'",sep=" "))
 
-getSRA( search_terms = "breast cancer", out_types = c('run','study'), sra_con )
-
-ls <- listSRAfile ( c("SRX000122"), sra_con, fileType = 'fastq', srcType='fasp')
+ls = listSRAfile( c('SRP044833'), sra_con, fileType = 'sra' )
 
 getSRAfile( ls$run, sra_con, fileType ='sra', srcType = "ftp" )
 ```
 
-```{r eval=FALSE}
-rs = listSRAfile( c('SRP044833'), sra_con, fileType = 'sra' )
 
-listSRAfile ( c('SRP044833'), sra_con, fileType = 'fastq', srcType='fasp')
-
-```
-
+]]
 ---
 
 # R session information 
