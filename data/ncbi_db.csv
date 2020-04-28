@@ -1,0 +1,38 @@
+Database,Records,Type,Description
+Books,528 176,Literature,Books and reports
+PubMed Central,4 066 155,Literature,Full-text journal articles
+PubMed,26 413 966,Literature,Scientific and medical abstracts/citations
+MeSH,265 382,Literature,Ontology used for PubMed indexing
+NLM Catalog,1 551 801,Literature,Index of NLM collections
+GTR,48 612,Health,Genetic testing registry
+ClinVar,159 184,Health,Human variations of clinical significance
+PubMed Health,62 991,Health,"Clinical effectiveness, disease and drug reports"
+dbGaP,223 662,Health,Genotype/phenotype interaction studies
+MedGen,292 341,Health,Medical genetics literature and links
+SRA,3 092 408,Genomes,High-throughput DNA and RNA sequence read archive
+Assembly,90 727,Genomes,Genome assembly information
+BioSample,5 224 211,Genomes,Descriptions of biological source materials
+dbVar,6 147 903,Genomes,Genome structural variation studies
+BioProject,193 972,Genomes,Biological projects providing data to NCBI
+Genome,16 962,Genomes,Genome sequencing projects by organism
+SNP,819 309 474,Genomes,Short genetic variations
+Taxonomy,1 617 350,Genomes,Taxonomic classification and nomenclature catalog
+Nucleotide,210 148 411,Genomes,DNA and RNA sequences
+Clone,38 083 613,Genomes,Genomic and cDNA clones
+GSS,39 614 616,Genomes,Genome survey sequences
+Probe,32 405 018,Genomes,Sequence-based probes and primers
+GEO DataSets,2 008 226,Genes,Functional genomics studies
+GEO Profiles,128 414 055,Genes,Gene expression and molecular abundance profiles
+Gene,24 351 351,Genes,Collected information about gene loci
+PopSet,257 306,Genes,Sequence sets from phylogenetic and population studies
+EST,76 257 001,Genes,Expressed sequence tag sequences
+UniGene,6 473 284,Genes,Clusters of expressed transcripts
+HomoloGene,141 268,Genes,Homologous gene sets for selected organisms
+Protein,307 799 547,Proteins,Protein sequences
+Structure,121 463,Proteins,Experimentally-determined biomolecular structures
+Conserved Domains,52 411,Proteins,Conserved protein domains
+Protein Clusters,820 546,Proteins,Sequence similarity-based protein clusters
+PubChem Compound,91 679 397,Chemicals,"Chemical information with structures, information and links"
+PubChem Substance,223 159 019,Chemicals,Deposited substance and chemical information
+BioSystems,879 994,Chemicals,"Molecular pathways with links to genes, proteins and chemicals"
+PubChem BioAssay,1 218 668,Chemicals,Bioactivity screening studies

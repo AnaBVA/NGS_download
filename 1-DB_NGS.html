@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Repositorios públicos de datos</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ana BVA" />
+    <meta name="date" content="2020-04-28" />
+    <script src="1-DB_NGS_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="1-DB_NGS_files/jquery/jquery.min.js"></script>
+    <link href="1-DB_NGS_files/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="1-DB_NGS_files/datatables-binding/datatables.js"></script>
+    <link href="1-DB_NGS_files/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="1-DB_NGS_files/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="1-DB_NGS_files/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="1-DB_NGS_files/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="1-DB_NGS_files/crosstalk/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="css/xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+
+
+
+class: inverse, center, title-slide, middle
+
+&lt;img height="160px" width="140px" style="position: absolute; top: 0; left: 2%; border: 1;" src= "https://liigh.unam.mx/wp-content/uploads/2016/05/logo-liigh-unam.png"&gt;
+
+# .content-box-purple[.black[Repositorios públicos de datos]]
+
+## 1: Revisión de bases de datos públicas con datos NGS
+
+
+### .content-box-red[.black[Ana BVA]]
+
+###  .small[2020-04-28]
+
+
+
+
+
+
+---
+
+# Objetivo
+
+Presentación a los alumnos de las principales bases de datos públicas con datos NGS, sus formas de acceso e identificación de anotación de datos.
+
+&lt;img height="390px" width="700px" style="position: absolute; top: 280px; left: 110px;" src= "fig/organismos3.png"&gt;
+
+
+---
+
+# Kahoot
+
+[Quiz](https://play.kahoot.it/v2/?quizId=ce95a065-5e38-4142-80df-65c297e83421)
+
+[Rueda](https://wheelofnames.com/)
+
+&lt;img src="https://images.readwrite.com/wp-content/uploads/2019/08/Why-You-Love-Online-Quizzes-825x500.jpg"&gt;
+
+---
+
+# Bases de datos genomicas
+
+[INSDC es "International Nucleotide Sequence Database Collaboration"](http://www.insdc.org/)
+
+&lt;img height="73%"  style="position: absolute; top: 190px; left: 200px;" src= "https://www.ddbj.nig.ac.jp/images/center/insdc_shoukai.gif"&gt;
+
+
+---
+
+# Tipos de datos 
+
+
+| Data type             | DDBJ                  | EMBL-EBI                         | NCBI                  |
+|-----------------------|-----------------------|----------------------------------|-----------------------|
+| Next generation reads | Sequence Read Archive | European NucleotideArchive (ENA) | Sequence Read Archive |
+| Capillary reads       | Trace Archive         | Trace Archive                    | Trace Archive         |
+| Annotated sequences   | DDBJ                  |                                  | GenBank               |
+| Samples               | BioSample             |                                  | BioSample             |
+| Studies               | BioProject            | BioProject                      | BioProject            |
+
+.bib[
+Brooksbank, Bergman, Apweiler, Birney, and Thornton (2014)
+]
+
+---
+
+## EMBL-EBI
+
+
+&lt;img height="500px" width="600px" style="position: absolute; top: 140px; left: 150px;" src= "https://www.researchgate.net/profile/Cath_Brooksbank/publication/258854691/figure/fig1/AS:202721891229703@1425344073456/EMBL-EBIs-core-data-resources-The-figure-summarizes-the-resources-described-in-this.png"&gt;
+
+
+
+.bib[
+Brooksbank, Bergman, Apweiler, et al. (2014)
+]
+
+
+---
+
+## NCBI
+
+.scroll-output[.code60[
+
+
+```r
+ncbi &lt;- read.csv("data/ncbi_db.csv")
+
+font.size &lt;- "80%"
+
+ncbi %&gt;% DT::datatable(fillContainer = FALSE, rownames = FALSE, options = list(initComplete = htmlwidgets::JS("function(settings, json) {", 
+    paste0("$(this.api().table().container()).css({'font-size': '", font.size, "'});"), 
+    "}")))
+```
+
+<div id="htmlwidget-34aad27c25c23d18c849" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-34aad27c25c23d18c849">{"x":{"filter":"none","fillContainer":false,"data":[["Books","PubMed Central","PubMed","MeSH","NLM Catalog","GTR","ClinVar","PubMed Health","dbGaP","MedGen","SRA","Assembly","BioSample","dbVar","BioProject","Genome","SNP","Taxonomy","Nucleotide","Clone","GSS","Probe","GEO DataSets","GEO Profiles","Gene","PopSet","EST","UniGene","HomoloGene","Protein","Structure","Conserved Domains","Protein Clusters","PubChem Compound","PubChem Substance","BioSystems","PubChem BioAssay"],["528 176","4 066 155","26 413 966","265 382","1 551 801","48 612","159 184","62 991","223 662","292 341","3 092 408","90 727","5 224 211","6 147 903","193 972","16 962","819 309 474","1 617 350","210 148 411","38 083 613","39 614 616","32 405 018","2 008 226","128 414 055","24 351 351","257 306","76 257 001","6 473 284","141 268","307 799 547","121 463","52 411","820 546","91 679 397","223 159 019","879 994","1 218 668"],["Literature","Literature","Literature","Literature","Literature","Health","Health","Health","Health","Health","Genomes","Genomes","Genomes","Genomes","Genomes","Genomes","Genomes","Genomes","Genomes","Genomes","Genomes","Genomes","Genes","Genes","Genes","Genes","Genes","Genes","Genes","Proteins","Proteins","Proteins","Proteins","Chemicals","Chemicals","Chemicals","Chemicals"],["Books and reports","Full-text journal articles","Scientific and medical abstracts/citations","Ontology used for PubMed indexing","Index of NLM collections","Genetic testing registry","Human variations of clinical significance","Clinical effectiveness, disease and drug reports","Genotype/phenotype interaction studies","Medical genetics literature and links","High-throughput DNA and RNA sequence read archive","Genome assembly information","Descriptions of biological source materials","Genome structural variation studies","Biological projects providing data to NCBI","Genome sequencing projects by organism","Short genetic variations","Taxonomic classification and nomenclature catalog","DNA and RNA sequences","Genomic and cDNA clones","Genome survey sequences","Sequence-based probes and primers","Functional genomics studies","Gene expression and molecular abundance profiles","Collected information about gene loci","Sequence sets from phylogenetic and population studies","Expressed sequence tag sequences","Clusters of expressed transcripts","Homologous gene sets for selected organisms","Protein sequences","Experimentally-determined biomolecular structures","Conserved protein domains","Sequence similarity-based protein clusters","Chemical information with structures, information and links","Deposited substance and chemical information","Molecular pathways with links to genes, proteins and chemicals","Bioactivity screening studies"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Database<\/th>\n      <th>Records<\/th>\n      <th>Type<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"initComplete":"function(settings, json) {\n$(this.api().table().container()).css({'font-size': '80%'});\n}","order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
+]]
+
+.bib[
+Coordinators (2017)
+]
+
+
+---
+
+class: title-slide
+background-image: url("https://www.labiotech.eu/wp-content/uploads/2020/01/Cloud-genomics-gene-sequencing.jpg")
+background-position: -500% 0%, 0% 0%
+background-size: 1000px
+background-color: #0148A4
+
+
+.pull-left[
+.white[
+
+# Ejercicio 1
+
+- Busca el genoma de un organismo. 
+
+Anota tu respuesta en:
+.content-box-purple[.black[[link](https://docs.google.com/document/d/1yW_FsQ0W-ok4eLRVauU93lc2XgTBeLi9loJfc8NAp8M/edit?usp=sharing)]]
+
+- ¿Cuál es el formato?
+
+
+]]
+
+.footnote[
+.content-box-red[
+[Rueda](https://wheelofnames.com/)
+]]
+
+---
+
+class: title-slide
+background-image: url("https://www.labiotech.eu/wp-content/uploads/2020/01/Cloud-genomics-gene-sequencing.jpg")
+background-position: -500% 0%, 0% 0%
+background-size: 1000px
+background-color: #0148A4
+
+
+.pull-left[
+.white[
+
+# Ejercicio 2
+
+Obten la secuencia del mRNA para el gen *ACE2*
+
+- Usa Ensembl
+
+- ¿Qué otras formas existen?
+
+
+]]
+
+
+.footnote[
+.content-box-red[
+[Rueda](https://wheelofnames.com/)
+]]
+
+---
+
+## Descarga sequencias
+
+- Websites: [NCBI](https://www.ncbi.nlm.nih.gov/geo/), [Ensembl](https://www.ensembl.org/index.html)
+
+- wget
+
+- perl: [Biomart (ensembl)](https://www.ensembl.org/biomart/martview/183d0ab3b960bb445f6ecc7c73d492c6)
+
+- R: [Biomart (ensembl)](https://bioconductor.org/packages/release/bioc/vignettes/biomaRt/inst/doc/biomaRt.html)
+
+- [E-utilities de NCBI](https://www.ncbi.nlm.nih.gov/books/NBK179288/?report=classic) ([Cookbook](https://github.com/NCBI-Hackathons/EDirectCookbook))
+
+
+---
+## Descarga de datos: .content-box-purple[.black[NCBI]]
+
+ [E-utilities de NCBI](https://www.ncbi.nlm.nih.gov/books/NBK179288/?report=classic) (Para mayor información se puede consular el [Cookbook](https://github.com/NCBI-Hackathons/EDirectCookbook))
+
+
+Entrez funciones:
+
+- _esearch:_ Busqueda con los terms
+
+- _elink:_ Busca links entre bases
+
+- _efilter:_ filtra busquedas.
+
+- _efetch:_  Descarga records o reportes 
+
+- _xtract:_ Cambio de formato XML a tabla
+
+
+.bib[
+Kans (2020)
+]
+
+
+
+---
+
+## Descarga de datos: .content-box-purple[.black[NCBI]]
+
+Se puede hacer busquedas desde linea de comando 
+
+.scroll-output[.code60[
+
+Entramos al cluster
+
+```bash
+ssh -X aaltamirano@dna.lavis.unam.mx
+```
+
+Activamos un nodo y descargamos el modulo 
+
+```bash
+qrsh
+module load e-utilities/27abr20
+```
+
+Podemos buscar artículos en pubmed
+
+
+```bash
+ esearch -db pubmed -query "COPD transcriptomics"
+```
+
+
+También podemos usar los "terms" de NCBI
+
+
+```bash
+esearch -db pubmed -query "COPD Barnes PJ[Author]"
+```
+
+Y obtener los abstracts 
+
+
+```bash
+esearch -db pubmed -query "COPD transcriptomics" | efetch -format abstract
+```
+
+Se pueden guardar en una tabla
+
+
+```bash
+ esearch -db pubmed -query "COPD transcriptomics" |
+  elink -related |
+  efilter -query "homo sapiens" |
+  efetch -format docsum |
+  xtract -pattern DocumentSummary -element Id SortFirstAuthor Title
+```
+
+También podemos obtener secuencias de protienas
+
+
+```bash
+esearch -db protein -query "(CYP1A1[GENE] ) AND Mus musculus[Organism] " | 
+efetch -format fasta
+```
+
+o secuencia nucleotídica 
+
+
+```bash
+esearch -db nucleotide -query "(CYP1A1 [GENE]) AND Mus musculus[ORGN] " | 
+efetch -format fasta
+```
+
+También se pueden conseguir solo las coordenadas de inicio y fin
+
+
+```bash
+ esearch -db gene -query "(CYP1A1 [GENE]) AND Mus musculus[ORGN]" |
+  efetch -format docsum |
+  xtract -pattern GenomicInfoType -element ChrAccVer ChrStart ChrStop
+```
+
+]]
+
+.bib[
+Kans (2020)
+]
+
+---
+class: segue-red
+
+# .white[Descarga de datos NGS]
+
+
+---
+
+## Descarga datos NGS
+
+### Pasos 
+
+1. Elegir el experimento para descargar 
+
+2. Elegir si se quieren datos RAW o datos pre-procesados
+
+3. Elegir como descargarlos
+
+---
+
+## Descarga datos NGS
+
+### Opciones
+
+- Websites: [NCBI](https://www.ncbi.nlm.nih.gov/geo/), [ArrayExpress]()
+
+- wget
+
+- [SRA Toolkit](https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/#download-sequence-data-files-usi)
+
+- [E-utilities de NCBI](https://www.ncbi.nlm.nih.gov/books/NBK179288/?report=classic) ([Cookbook](https://github.com/NCBI-Hackathons/EDirectCookbook))
+
+- R: [GEOquery],[SRAdb],[GEOmeta]
+
+- [Recount](https://jhubiostatistics.shinyapps.io/recount/) para datos de RNAseq en humano
+
+---
+
+class: segue
+
+# .white[Descarga de datos NGS]
+
+## .white[A) Descarga de datos pre-procesados]
+
+---
+## GEO de NCBI
+
+Gene Expression Omnibus [(GEO)](https://www.ncbi.nlm.nih.gov/geo/)  es un repositorio con datos genómicos en donde los autores pueden subir los datos usados en los artículos. Podemos encontrar la información de:
+
+- Experimentos: GSE 
+
+- Muestras: GSM 
+
+- Plataformas: GPL 
+
+- Datos curados:GDS 
+
+&lt;blockquote&gt;
+Generalmente se encuentran los datos pre-procesados y en ocasiones los datos crudos en el material supplementario. 
+&lt;/blockquote&gt;
+
+.content-box-red[Ojo: DEPENDE DE CADA EXPERIMENTO]
+
+
+---
+## GEO de NCBI
+
+Ejemplo: 
+
+[GSE59760](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE59760)
+
+&lt;img height="400px" width="800px" style="position: absolute; top: 300px; left: 10px;" src= "https://www.ncbi.nlm.nih.gov/geo/img/submission_overview.jpg"&gt;
+
+---
+
+class: title-slide
+background-image: url("https://www.labiotech.eu/wp-content/uploads/2020/01/Cloud-genomics-gene-sequencing.jpg")
+background-position: -500% 0%, 0% 0%
+background-size: 1000px
+background-color: #0148A4
+
+
+.pull-left[
+.white[
+
+
+# Ejercicio 3
+
+.font60[
+De los datos de .content-box-blue[[GSE59760](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE59760)]
+
+- ¿Cuantas muestras tiene?
+
+- ¿Qué plataforma usa?
+
+- ¿En que fecha se subieron los datos?
+
+- ¿Cuanto pesan los archivos?
+
+- Es SINGLE END o PAIRED ¿?
+
+- ¿Qué es un archivo .SOFT?
+]]]
+
+
+.footnote[
+.content-box-red[
+[Rueda](https://wheelofnames.com/)
+]]
+---
+
+## A) Descarga de datos pre-procesados: .content-box-purple[.black[wget]]
+
+Descargaremos los datos pre-procesados del proyecto [SRP044833](https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=SRP044833)
+
+Para decargar los datos pre-procesados ocupamos el 
+id de GEO: [GSE59760](https://www.ncbi.nlm.nih.gov//geo/query/acc.cgi?acc=GSE59760)
+
+.content-box-red[Ojo: son gene counts]
+
+Y usamos la dirección de [ftp](https://ftp.ncbi.nlm.nih.gov/geo) para descargarlos.
+
+&lt;blockquote&gt;
+https://ftp.ncbi.nlm.nih.gov/geo/series/GSE59nnn/GSE59760/
+&lt;/blockquote&gt;
+
+Y descargamos los datos usando wget
+
+
+```bash
+wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE59nnn/GSE59760/suppl/GSE59760_supplementations_rnaseq.csv.gz
+gunzip GSE67218_Eco_LB_RPKM.txt.gz
+```
+
+
+---
+
+## A) Descarga de datos pre-procesados: .content-box-purple[.black[GEOquery]]
+
+.scroll-output[.pre[
+
+`GEOquery` es una libreria de R que se encuentra dentro de los paquetes de 
+`Bioconductor`. Para mayor información utiliza la [vignette](https://www.bioconductor.org/packages/release/bioc/vignettes/GEOquery/inst/doc/GEOquery.html)
+
+
+
+
+```r
+library(GEOquery)
+```
+
+Se obtienen los datos que se encuentran en el `.SOFT` file
+
+
+```r
+gse &lt;- getGEO("GSE59760", GSEMatrix = FALSE)
+```
+
+
+
+```r
+head(Meta(gse))
+```
+
+```
+## $contact_address
+## [1] "9500 Gilman Dr."
+## 
+## $contact_city
+## [1] "La Jolla"
+## 
+## $contact_country
+## [1] "USA"
+## 
+## $contact_department
+## [1] "Bioengineering"
+## 
+## $contact_email
+## [1] "palsson@ucsd.edu"
+## 
+## $contact_institute
+## [1] "UCSD"
+```
+
+Pero también podemos guardar la información en un objeto `ExpressionSet`
+
+
+```r
+gse &lt;- getGEO("GSE59760")
+```
+
+```
+## Found 1 file(s)
+```
+
+```
+## GSE59760_series_matrix.txt.gz
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   ID_REF = col_character(),
+##   GSM1446167 = col_character(),
+##   GSM1446168 = col_character(),
+##   GSM1446169 = col_character(),
+##   GSM1446170 = col_character()
+## )
+```
+
+```
+## File stored at:
+```
+
+```
+## /var/folders/18/p2_gcpnj5cndgw_29cyqsygw0000gp/T//RtmpFqrjre/GPL18995.soft
+```
+
+```r
+gse
+```
+
+```
+## $GSE59760_series_matrix.txt.gz
+## ExpressionSet (storageMode: lockedEnvironment)
+## assayData: 0 features, 4 samples 
+##   element names: exprs 
+## protocolData: none
+## phenoData
+##   sampleNames: GSM1446167 GSM1446168 GSM1446169 GSM1446170
+##   varLabels: title geo_accession ... strain:ch1 (46 total)
+##   varMetadata: labelDescription
+## featureData: none
+## experimentData: use 'experimentData(object)'
+##   pubMedIds: 27782110 
+## Annotation: GPL18995
+```
+
+Podemos usar funciones específicas para el objeto
+
+
+```r
+pData(gse[[1]])
+```
+
+```
+##                 title geo_accession                status submission_date
+## GSM1446167   Glycine1    GSM1446167 Public on Feb 14 2017     Jul 25 2014
+## GSM1446168   Glycine2    GSM1446168 Public on Feb 14 2017     Jul 25 2014
+## GSM1446169 Threonine1    GSM1446169 Public on Feb 14 2017     Jul 25 2014
+## GSM1446170 Threonine2    GSM1446170 Public on Feb 14 2017     Jul 25 2014
+##            last_update_date type channel_count                 source_name_ch1
+## GSM1446167      May 15 2019  SRA             1 Total RNA isolated from E. coli
+## GSM1446168      May 15 2019  SRA             1 Total RNA isolated from E. coli
+## GSM1446169      May 15 2019  SRA             1 Total RNA isolated from E. coli
+## GSM1446170      May 15 2019  SRA             1 Total RNA isolated from E. coli
+##                        organism_ch1 characteristics_ch1 characteristics_ch1.1
+## GSM1446167 Escherichia coli BW25113 strain: K-12 MG1655          genotype: WT
+## GSM1446168 Escherichia coli BW25113 strain: K-12 MG1655          genotype: WT
+## GSM1446169 Escherichia coli BW25113 strain: K-12 MG1655          genotype: WT
+## GSM1446170 Escherichia coli BW25113 strain: K-12 MG1655          genotype: WT
+##                                             characteristics_ch1.2
+## GSM1446167     amino acid supplementation: 10 mM Glycine in Media
+## GSM1446168     amino acid supplementation: 10 mM Glycine in Media
+## GSM1446169 amino acid supplementation: 10 mM L-Threonine in Media
+## GSM1446170 amino acid supplementation: 10 mM L-Threonine in Media
+##                                                        treatment_protocol_ch1
+## GSM1446167 The cell culture was treated with the RNAprotect reagent (Qiagen).
+## GSM1446168 The cell culture was treated with the RNAprotect reagent (Qiagen).
+## GSM1446169 The cell culture was treated with the RNAprotect reagent (Qiagen).
+## GSM1446170 The cell culture was treated with the RNAprotect reagent (Qiagen).
+##                                                                                                                                             growth_protocol_ch1
+## GSM1446167 Cells were grown to mid-log phase aerobically at 37°C in M9 Minimal Media 4 g/L D-Glucose with 10 mM of the corresponding amino acid supplementation
+## GSM1446168 Cells were grown to mid-log phase aerobically at 37°C in M9 Minimal Media 4 g/L D-Glucose with 10 mM of the corresponding amino acid supplementation
+## GSM1446169 Cells were grown to mid-log phase aerobically at 37°C in M9 Minimal Media 4 g/L D-Glucose with 10 mM of the corresponding amino acid supplementation
+## GSM1446170 Cells were grown to mid-log phase aerobically at 37°C in M9 Minimal Media 4 g/L D-Glucose with 10 mM of the corresponding amino acid supplementation
+##            molecule_ch1
+## GSM1446167    total RNA
+## GSM1446168    total RNA
+## GSM1446169    total RNA
+## GSM1446170    total RNA
+##                                                                                                                                                                                                                                                                                                    extract_protocol_ch1
+## GSM1446167 Total RNA was extracted using the RNeasy Plus Mini kit (Qiagen Inc., Valencia, CA, USA) and genomic DNA was removed by gDNA Eliminator spin column in the RNeasy Plus Mini Kit. RNA quality and concentration was determined by analysis with a NanoDrop 1000 (Thermo Scientific Inc., Wilmington, DE, USA).
+## GSM1446168 Total RNA was extracted using the RNeasy Plus Mini kit (Qiagen Inc., Valencia, CA, USA) and genomic DNA was removed by gDNA Eliminator spin column in the RNeasy Plus Mini Kit. RNA quality and concentration was determined by analysis with a NanoDrop 1000 (Thermo Scientific Inc., Wilmington, DE, USA).
+## GSM1446169 Total RNA was extracted using the RNeasy Plus Mini kit (Qiagen Inc., Valencia, CA, USA) and genomic DNA was removed by gDNA Eliminator spin column in the RNeasy Plus Mini Kit. RNA quality and concentration was determined by analysis with a NanoDrop 1000 (Thermo Scientific Inc., Wilmington, DE, USA).
+## GSM1446170 Total RNA was extracted using the RNeasy Plus Mini kit (Qiagen Inc., Valencia, CA, USA) and genomic DNA was removed by gDNA Eliminator spin column in the RNeasy Plus Mini Kit. RNA quality and concentration was determined by analysis with a NanoDrop 1000 (Thermo Scientific Inc., Wilmington, DE, USA).
+##                                                                  extract_protocol_ch1.1
+## GSM1446167 RNA libraries were prepared for sequencing using standard Illumina protocols
+## GSM1446168 RNA libraries were prepared for sequencing using standard Illumina protocols
+## GSM1446169 RNA libraries were prepared for sequencing using standard Illumina protocols
+## GSM1446170 RNA libraries were prepared for sequencing using standard Illumina protocols
+##            taxid_ch1                description
+## GSM1446167    679895     10 mM Glycine in Media
+## GSM1446168    679895     10 mM Glycine in Media
+## GSM1446169    679895 10 mM L-Threonine in Media
+## GSM1446170    679895 10 mM L-Threonine in Media
+##                                                                                                                   data_processing
+## GSM1446167 Sequenced reads were mapped onto NC_000913 reference genome sequence using bowtie v0.12.8 with parameters -X 1000 -n 2
+## GSM1446168 Sequenced reads were mapped onto NC_000913 reference genome sequence using bowtie v0.12.8 with parameters -X 1000 -n 2
+## GSM1446169 Sequenced reads were mapped onto NC_000913 reference genome sequence using bowtie v0.12.8 with parameters -X 1000 -n 2
+## GSM1446170 Sequenced reads were mapped onto NC_000913 reference genome sequence using bowtie v0.12.8 with parameters -X 1000 -n 2
+##                                                                                                                                              data_processing.1
+## GSM1446167 Reads Per Kilobase of exon per Megabase of library size (RPKM) were calculated using cufflinks v2.1.1 with the option --library-type fr-firststrand
+## GSM1446168 Reads Per Kilobase of exon per Megabase of library size (RPKM) were calculated using cufflinks v2.1.1 with the option --library-type fr-firststrand
+## GSM1446169 Reads Per Kilobase of exon per Megabase of library size (RPKM) were calculated using cufflinks v2.1.1 with the option --library-type fr-firststrand
+## GSM1446170 Reads Per Kilobase of exon per Megabase of library size (RPKM) were calculated using cufflinks v2.1.1 with the option --library-type fr-firststrand
+##                 data_processing.2
+## GSM1446167 Genome_build: ASM584v2
+## GSM1446168 Genome_build: ASM584v2
+## GSM1446169 Genome_build: ASM584v2
+## GSM1446170 Genome_build: ASM584v2
+##                                                                                                  data_processing.3
+## GSM1446167 Supplementary_files_format_and_content: comma-delimited text files include RPKM values for each Sample.
+## GSM1446168 Supplementary_files_format_and_content: comma-delimited text files include RPKM values for each Sample.
+## GSM1446169 Supplementary_files_format_and_content: comma-delimited text files include RPKM values for each Sample.
+## GSM1446170 Supplementary_files_format_and_content: comma-delimited text files include RPKM values for each Sample.
+##            platform_id      contact_name    contact_email contact_phone
+## GSM1446167    GPL18995 Bernhard,,Palsson palsson@ucsd.edu  858-534-5668
+## GSM1446168    GPL18995 Bernhard,,Palsson palsson@ucsd.edu  858-534-5668
+## GSM1446169    GPL18995 Bernhard,,Palsson palsson@ucsd.edu  858-534-5668
+## GSM1446170    GPL18995 Bernhard,,Palsson palsson@ucsd.edu  858-534-5668
+##                        contact_laboratory contact_department contact_institute
+## GSM1446167 Systems Biology Research Group     Bioengineering              UCSD
+## GSM1446168 Systems Biology Research Group     Bioengineering              UCSD
+## GSM1446169 Systems Biology Research Group     Bioengineering              UCSD
+## GSM1446170 Systems Biology Research Group     Bioengineering              UCSD
+##            contact_address contact_city contact_state contact_zip/postal_code
+## GSM1446167 9500 Gilman Dr.     La Jolla            CA                   92122
+## GSM1446168 9500 Gilman Dr.     La Jolla            CA                   92122
+## GSM1446169 9500 Gilman Dr.     La Jolla            CA                   92122
+## GSM1446170 9500 Gilman Dr.     La Jolla            CA                   92122
+##            contact_country data_row_count instrument_model library_selection
+## GSM1446167             USA              0   Illumina MiSeq              cDNA
+## GSM1446168             USA              0   Illumina MiSeq              cDNA
+## GSM1446169             USA              0   Illumina MiSeq              cDNA
+## GSM1446170             USA              0   Illumina MiSeq              cDNA
+##            library_source library_strategy
+## GSM1446167 transcriptomic          RNA-Seq
+## GSM1446168 transcriptomic          RNA-Seq
+## GSM1446169 transcriptomic          RNA-Seq
+## GSM1446170 transcriptomic          RNA-Seq
+##                                                                  relation
+## GSM1446167 BioSample: https://www.ncbi.nlm.nih.gov/biosample/SAMN02940912
+## GSM1446168 BioSample: https://www.ncbi.nlm.nih.gov/biosample/SAMN02940913
+## GSM1446169 BioSample: https://www.ncbi.nlm.nih.gov/biosample/SAMN02940914
+## GSM1446170 BioSample: https://www.ncbi.nlm.nih.gov/biosample/SAMN02940915
+##                                                      relation.1
+## GSM1446167 SRA: https://www.ncbi.nlm.nih.gov/sra?term=SRX661397
+## GSM1446168 SRA: https://www.ncbi.nlm.nih.gov/sra?term=SRX661398
+## GSM1446169 SRA: https://www.ncbi.nlm.nih.gov/sra?term=SRX661399
+## GSM1446170 SRA: https://www.ncbi.nlm.nih.gov/sra?term=SRX661400
+##            supplementary_file_1 amino acid supplementation:ch1 genotype:ch1
+## GSM1446167                 NONE         10 mM Glycine in Media           WT
+## GSM1446168                 NONE         10 mM Glycine in Media           WT
+## GSM1446169                 NONE     10 mM L-Threonine in Media           WT
+## GSM1446170                 NONE     10 mM L-Threonine in Media           WT
+##             strain:ch1
+## GSM1446167 K-12 MG1655
+## GSM1446168 K-12 MG1655
+## GSM1446169 K-12 MG1655
+## GSM1446170 K-12 MG1655
+```
+
+¿Qué pasa con los datos?
+
+
+```r
+exprs(gse[[1]])
+```
+
+```
+##      GSM1446167 GSM1446168 GSM1446169 GSM1446170
+```
+
+Podemos descargar los datos que se encuentran en el material supplementario 
+
+
+```r
+# fetch_files TRUE, then actually download the files
+# supp &lt;- getGEOSuppFiles("GSE59760", fetch_files = TRUE)
+sfile &lt;-  "/Users/user/Documents/Doctorado/Courses/Taught/Bioinfo2/GSE59760/GSE59760_supplementations_rnaseq.csv.gz"
+
+#Leer el archivo descargado
+csv &lt;- read.csv(sfile, row.names = 1)
+```
+
+**OJO** Los datos no siempre son lo que parece. ¿Cuantas columan son?
+
+
+```r
+dim(csv)
+```
+
+```
+## [1] 4379    6
+```
+
+```r
+head(csv)
+```
+
+```
+##          Glutamate1 Glutamate2 Glycine1 Glycine2 Threonine1 Threonine2
+## G0-10202     0.0000     0.0000   0.0000   0.0000     0.0000     0.0000
+## G0-10525     0.0000     0.0000   0.0000   0.0000     0.0000     0.0000
+## G0-10528     0.0000     0.0000   0.0000   0.0000     0.0000     0.0000
+## G0-10529    46.8092    40.8860  31.4450  30.8697    71.2937    53.7455
+## G0-10530     0.0000     0.0000   0.0000   0.0000     0.0000     0.0000
+## G0-10531    40.1544    39.4132  29.3704  34.1619    65.8009    53.1851
+```
+
+```r
+# Quitamos las primeras dos columnas porque no estan reportadas en GEO
+csv &lt;- csv[,-c(1:2)]
+```
+
+Podemos crear un nuevo objeto `ExpressionSet` con los datos.
+
+
+```r
+# Reasignamos el nombre de las columnas
+colnames(csv)[pData(gse[[1]])[,1]] &lt;- pData(gse[[1]])[,2]
+head(csv)
+```
+
+```
+##          GSM1446167 GSM1446168 GSM1446169 GSM1446170
+## G0-10202     0.0000     0.0000     0.0000     0.0000
+## G0-10525     0.0000     0.0000     0.0000     0.0000
+## G0-10528     0.0000     0.0000     0.0000     0.0000
+## G0-10529    31.4450    30.8697    71.2937    53.7455
+## G0-10530     0.0000     0.0000     0.0000     0.0000
+## G0-10531    29.3704    34.1619    65.8009    53.1851
+```
+
+Tenemos nuestro nuevo objeto
+
+
+```r
+eset2 &lt;- new('ExpressionSet',exprs=as.matrix(csv),phenoData=phenoData(gse[[1]]))
+```
+
+]]
+
+---
+
+## A) Descarga de datos pre-procesados: .content-box-purple[.black[Recount]]
+
+.scroll-output[.pre[
+
+&lt;blockquote&gt;
+`Recount` es un repositorio donde podemos encontrar los datos pre-procesados de humano. 
+&lt;/blockquote&gt;
+
+Tiene una libreria de R que se encuentra dentro de los paquetes de 
+`Bioconductor`. Para mayor información puedes checar la [página](https://jhubiostatistics.shinyapps.io/recount/) o utiliza la [vignette](http://bioconductor.org/packages/release/bioc/html/recount.html). 
+
+
+
+```r
+library(recount)
+```
+
+Necesitamos el ID de SRA (SRP) para descargar el experimento
+
+
+```r
+url &lt;- download_study('SRP009615')
+```
+
+```
+## 2020-04-28 04:00:48 downloading file rse_gene.Rdata to SRP009615
+```
+
+Descargamos los datos 
+
+
+```r
+load(file.path('SRP009615', 'rse_gene.Rdata'))
+```
+
+Leemos los datos
+
+
+```r
+rse &lt;- scale_counts(rse_gene)
+rse
+```
+
+```
+## class: RangedSummarizedExperiment 
+## dim: 58037 12 
+## metadata(0):
+## assays(1): counts
+## rownames(58037): ENSG00000000003.14 ENSG00000000005.5 ...
+##   ENSG00000283698.1 ENSG00000283699.1
+## rowData names(3): gene_id bp_length symbol
+## colnames(12): SRR387777 SRR387778 ... SRR389083 SRR389084
+## colData names(21): project sample ... title characteristics
+```
+
+]]
+---
+
+class: segue
+
+# .white[Descarga de datos NGS]
+
+## .white[B) Descarga de datos Curdos]
+
+
+---
+
+
+## B) Descarga de datos Curdos: .content-box-purple[.black[SRA Toolkit]]
+
+.scroll-output[.pre[
+
+Para mayor información, se puede consultar la documentación de [SRA Toolkit](https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/) y el [handbook](https://www.ncbi.nlm.nih.gov/sites/books/NBK242621/)
+
+
+Entramos al cluster 
+
+
+```bash
+ssh -X aaltamirano@dna.lavis.unam.mx
+```
+
+Descargamos en el ambiente el modulo de `SRA Toolkit`
+
+
+```bash
+qrsh
+module load sra/2.9.6-1
+```
+
+Tenemos que configurar el directorio de salida. Por default es en `/home/user`
+
+
+```bash
+echo "/home/amedina/amedinalab/aaltamirano/Bioinfo2/NGSdata/ncbi = \"$DATA\"" &gt; $HOME/.ncbi/user-settings.mkfg
+```
+
+Opcionalmente podemos intentar con el modulo gráfico 
+
+
+```bash
+# vdb-config -i
+```
+
+Ocuparemos la función `fasterq-dump`, la cual tiene la ayuda usando `--help`
+
+
+```bash
+fasterq-dump --help
+```
+
+Podemos descargar los archivos usando `fasterq-dump`
+
+
+```bash
+# Podemos ver las primero 5 secuencias en la pantalla
+fastq-dump -X 5 -Z SRR000001
+# Descargamos los datos
+fasterq-dump SRR000001 -O .
+```
+
+
+]]
+
+
+---
+
+## B) Descarga de datos Curdos: .content-box-purple[.black[E-utilities]] y .content-box-purple[.black[SRA Toolkit]]
+
+Podemos ocupar las dos herramientas para descargar los archivos en formato fasta
+
+.scroll-output[.pre[
+
+Podemos ocupar `E-utilities`para obterner los SRR ids, usando el id de [`SRP044833`](https://trace.ncbi.nlm.nih.gov/Traces/study/?acc=SRP044833).
+
+
+```bash
+esearch -db sra -query "SRP044833" |  efetch -format docsum |./xtract.Linux -pattern Runs -ACC @acc  -element "&amp;ACC"
+```
+
+Podemos saber el tamaño de los archivos en cantidad de `bases` y/o `MB`
+
+
+```bash
+esearch -db sra -query "SRP044833" |  esummary -format runinfo -mode xml | ./xtract.Linux -pattern Row -element Run,size_MB,bases
+```
+
+
+Ahora podemos usar la funcion de `fastq-dump` para descargar los fasta, en este ejemplo solo descargamos las 10 primeras secuencias usando `xargs fastq-dump -X 10 --split-files`
+
+
+```bash
+esearch -db sra -query "SRP044833" |  efetch -format docsum |./xtract.Linux -pattern Runs -ACC @acc  -element "&amp;ACC" | xargs fastq-dump -X 10 --split-files
+```
+
+
+]]
+
+---
+
+
+## B) Descarga de datos Curdos: .content-box-purple[.black[library(SRAdb)]]
+
+También podemos descargarlos usando el paquete de `SRAdb` de `R`. Para mayores
+referencias checar la vigetta del paquete. 
+
+
+```r
+library(SRAdb)
+```
+
+Se descarga la base de datos. En nuestro caso, leer desde mi `path`
+
+```r
+# srafile = getSRAdbFile()  # Hacer esto para descargar la Base de datos
+sqlfile &lt;- file.path('/home/amedina/amedinalab/aaltamirano/Bioinfo2/NGSdata/SRAmetadb.sqlite')
+```
+
+Nos conectamos a la Base de Datos
+
+
+```r
+sra_con = dbConnect(RSQLite::SQLite(), sqlfile)
+```
+
+Podemos hacer busquedas
+
+
+```r
+rs &lt;- dbGetQuery(sra_con, paste( "select study_accession,
+ study_title from study where",
+ "study_description like 'Transcriptome%'",sep=" "))
+
+getSRA( search_terms = "breast cancer", out_types = c('run','study'), sra_con )
+
+ls &lt;- listSRAfile ( c("SRX000122"), sra_con, fileType = 'fastq', srcType='fasp')
+
+getSRAfile( ls$run, sra_con, fileType ='sra', srcType = "ftp" )
+```
+
+
+```r
+rs = listSRAfile( c('SRP044833'), sra_con, fileType = 'sra' )
+
+listSRAfile ( c('SRP044833'), sra_con, fileType = 'fastq', srcType='fasp')
+```
+
+---
+
+# R session information 
+
+.scroll-output[.code60[
+
+
+```r
+sessioninfo::session_info()
+```
+
+```
+## ─ Session info ───────────────────────────────────────────────────────────────
+##  setting  value                       
+##  version  R version 3.6.0 (2019-04-26)
+##  os       macOS  10.15.4              
+##  system   x86_64, darwin15.6.0        
+##  ui       X11                         
+##  language (EN)                        
+##  collate  en_US.UTF-8                 
+##  ctype    en_US.UTF-8                 
+##  tz       America/Mexico_City         
+##  date     2020-04-28                  
+## 
+## ─ Packages ───────────────────────────────────────────────────────────────────
+##  package              * version    date       lib
+##  acepack                1.4.1      2016-10-29 [2]
+##  AnnotationDbi          1.48.0     2019-10-29 [2]
+##  askpass                1.1        2019-01-13 [2]
+##  assertthat             0.2.1      2019-03-21 [2]
+##  backports              1.1.6      2020-04-05 [2]
+##  base64enc              0.1-3      2015-07-28 [2]
+##  bibtex                 0.4.2.2    2020-01-02 [2]
+##  Biobase              * 2.46.0     2019-10-29 [2]
+##  BiocFileCache          1.10.2     2019-11-08 [2]
+##  BiocGenerics         * 0.32.0     2019-10-29 [2]
+##  BiocParallel         * 1.20.1     2019-12-21 [2]
+##  biomaRt                2.42.1     2020-03-26 [2]
+##  Biostrings             2.54.0     2019-10-29 [2]
+##  bit                    1.1-15.2   2020-02-10 [2]
+##  bit64                  0.9-7      2017-05-08 [2]
+##  bitops                 1.0-6      2013-08-17 [2]
+##  blob                   1.2.1      2020-01-20 [2]
+##  BSgenome               1.54.0     2019-10-29 [2]
+##  bumphunter             1.28.0     2019-10-29 [2]
+##  checkmate              2.0.0      2020-02-06 [2]
+##  cli                    2.0.2      2020-02-28 [2]
+##  cluster                2.1.0      2019-06-19 [2]
+##  codetools              0.2-16     2018-12-24 [2]
+##  colorspace             1.4-1      2019-03-18 [2]
+##  crayon                 1.3.4      2017-09-16 [2]
+##  crosstalk              1.1.0.1    2020-03-13 [2]
+##  curl                   4.3        2019-12-02 [2]
+##  data.table             1.12.8     2019-12-09 [2]
+##  DBI                    1.1.0      2019-12-15 [2]
+##  dbplyr                 1.4.3      2020-04-19 [2]
+##  DelayedArray         * 0.12.3     2020-04-09 [2]
+##  derfinder              1.20.0     2019-10-29 [2]
+##  derfinderHelper        1.20.0     2019-10-29 [2]
+##  digest                 0.6.25     2020-02-23 [2]
+##  doRNG                  1.8.2      2020-01-27 [2]
+##  downloader             0.4        2015-07-09 [2]
+##  dplyr                  0.8.5      2020-03-07 [2]
+##  DT                   * 0.13       2020-03-23 [2]
+##  ellipsis               0.3.0      2019-09-20 [2]
+##  evaluate               0.14       2019-05-28 [2]
+##  fansi                  0.4.1      2020-01-08 [2]
+##  foreach                1.5.0      2020-03-30 [2]
+##  foreign                0.8-76     2020-03-03 [2]
+##  formatR                1.7        2019-06-11 [2]
+##  Formula                1.2-3      2018-05-03 [2]
+##  generics               0.0.2      2018-11-29 [2]
+##  GenomeInfoDb         * 1.22.1     2020-03-27 [2]
+##  GenomeInfoDbData       1.2.2      2019-10-28 [2]
+##  GenomicAlignments      1.22.1     2019-11-12 [2]
+##  GenomicFeatures        1.38.2     2020-02-15 [2]
+##  GenomicFiles           1.22.0     2019-10-29 [2]
+##  GenomicRanges        * 1.38.0     2019-10-29 [2]
+##  GEOquery             * 2.54.1     2019-11-18 [2]
+##  ggplot2                3.3.0      2020-03-05 [2]
+##  glue                   1.4.0      2020-04-03 [2]
+##  graph                * 1.64.0     2019-10-29 [2]
+##  gridExtra              2.3        2017-09-09 [2]
+##  gtable                 0.3.0      2019-03-25 [2]
+##  Hmisc                  4.4-0      2020-03-23 [2]
+##  hms                    0.5.3      2020-01-08 [2]
+##  htmlTable              1.13.3     2019-12-04 [2]
+##  htmltools              0.4.0      2019-10-04 [2]
+##  htmlwidgets            1.5.1      2019-10-08 [2]
+##  httr                   1.4.1      2019-08-05 [2]
+##  IRanges              * 2.20.2     2020-01-13 [2]
+##  iterators              1.0.12     2019-07-26 [2]
+##  jpeg                   0.1-8.1    2019-10-24 [2]
+##  jsonlite               1.6.1      2020-02-02 [2]
+##  knitr                  1.28       2020-02-06 [2]
+##  lattice                0.20-41    2020-04-02 [2]
+##  latticeExtra           0.6-29     2019-12-19 [2]
+##  lifecycle              0.2.0      2020-03-06 [2]
+##  limma                  3.42.2     2020-02-03 [2]
+##  locfit                 1.5-9.4    2020-03-25 [2]
+##  lubridate              1.7.8      2020-04-06 [2]
+##  magrittr               1.5        2014-11-22 [2]
+##  Matrix                 1.2-18     2019-11-27 [2]
+##  matrixStats          * 0.56.0     2020-03-13 [2]
+##  memoise                1.1.0      2017-04-21 [2]
+##  munsell                0.5.0      2018-06-12 [2]
+##  nnet                   7.3-14     2020-04-26 [2]
+##  openssl                1.4.1      2019-07-18 [2]
+##  pillar                 1.4.3      2019-12-20 [2]
+##  pkgconfig              2.0.3      2019-09-22 [2]
+##  plyr                   1.8.6      2020-03-03 [2]
+##  png                    0.1-7      2013-12-03 [2]
+##  prettyunits            1.1.1      2020-01-24 [2]
+##  progress               1.2.2      2019-05-16 [2]
+##  purrr                  0.3.4      2020-04-17 [1]
+##  qvalue                 2.18.0     2019-10-29 [2]
+##  R6                     2.4.1      2019-11-12 [2]
+##  rappdirs               0.3.1      2016-03-28 [2]
+##  RColorBrewer           1.1-2      2014-12-07 [2]
+##  Rcpp                   1.0.4.6    2020-04-09 [2]
+##  RCurl                * 1.98-1.2   2020-04-18 [2]
+##  readr                  1.3.1      2018-12-21 [2]
+##  recount              * 1.12.1     2019-11-06 [2]
+##  RefManageR           * 1.2.13     2020-04-23 [1]
+##  rentrez                1.2.2      2019-05-02 [2]
+##  reshape2               1.4.4      2020-04-09 [2]
+##  rlang                  0.4.5      2020-03-01 [2]
+##  rmarkdown              2.1        2020-01-20 [2]
+##  rngtools               1.5        2020-01-23 [2]
+##  rpart                  4.1-15     2019-04-12 [2]
+##  Rsamtools              2.2.3      2020-02-23 [2]
+##  RSQLite              * 2.2.0      2020-01-07 [2]
+##  rstudioapi             0.11       2020-02-07 [2]
+##  rtracklayer            1.46.0     2019-10-29 [2]
+##  S4Vectors            * 0.24.4     2020-04-09 [2]
+##  scales                 1.1.0      2019-11-18 [2]
+##  sessioninfo            1.1.1      2018-11-05 [2]
+##  showtext               0.7-1      2020-01-27 [2]
+##  showtextdb             2.0        2017-09-11 [2]
+##  SRAdb                * 1.48.2     2019-12-24 [1]
+##  stringi                1.4.6      2020-02-17 [2]
+##  stringr                1.4.0      2019-02-10 [2]
+##  SummarizedExperiment * 1.16.1     2019-12-19 [2]
+##  survival               3.1-12     2020-04-10 [2]
+##  sysfonts               0.8        2018-10-11 [2]
+##  tibble                 3.0.1      2020-04-20 [2]
+##  tidyr                  1.0.2      2020-01-24 [2]
+##  tidyselect             1.0.0      2020-01-27 [2]
+##  VariantAnnotation      1.32.0     2019-10-29 [2]
+##  vctrs                  0.2.4      2020-03-10 [2]
+##  whisker                0.4        2019-08-28 [2]
+##  withr                  2.2.0      2020-04-20 [2]
+##  xaringan               0.16       2020-03-31 [2]
+##  xaringanthemer       * 0.2.0.9100 2020-04-22 [1]
+##  xfun                   0.13       2020-04-13 [2]
+##  XML                    3.99-0.3   2020-01-20 [2]
+##  xml2                   1.3.2      2020-04-23 [2]
+##  XVector                0.26.0     2019-10-29 [2]
+##  yaml                   2.2.1      2020-02-01 [2]
+##  zlibbioc               1.32.0     2019-10-29 [2]
+##  source                                   
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+##  Bioconductor                             
+##  Bioconductor                             
+##  Bioconductor                             
+##  Bioconductor                             
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  Bioconductor                             
+##  Bioconductor                             
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+##  Bioconductor                             
+##  Bioconductor                             
+##  Bioconductor                             
+##  Bioconductor                             
+##  Bioconductor                             
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+##  Github (ropensci/RefManageR@4dd720a)     
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+##  CRAN (R 3.6.2)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  CRAN (R 3.6.2)                           
+##  Github (gadenbuie/xaringanthemer@b68578b)
+##  CRAN (R 3.6.2)                           
+##  CRAN (R 3.6.0)                           
+##  CRAN (R 3.6.2)                           
+##  Bioconductor                             
+##  CRAN (R 3.6.0)                           
+##  Bioconductor                             
+## 
+## [1] /Users/user/Library/R/3.6/library
+## [2] /Library/Frameworks/R.framework/Versions/3.6/Resources/library
+```
+
+]]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "solarized-light",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

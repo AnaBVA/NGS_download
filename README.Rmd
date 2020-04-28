@@ -1,0 +1,44 @@
+---
+title: "Módulo: Repositorios públicos de datos"
+author: "Ana BVA"
+date: "4/21/2020"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    theme: cerulean
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Temas
+
+En este módulo verémos:
+
+| Sesión      | Objetivo(s)                                          | Metodología (actividades para el aprendizaje)                                                                                                                                                                                                                                      |
+|-------------|------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 28 de abril | Revisión de bases de datos públicas con datos NGS    | Presentación a los alumnos de las principales bases de datos públicas con datos NGS, sus formas de acceso e identificación de anotación de datos                                                                                                                                   |
+| 29 de abril | Ejercicio de análisis de datos usando bases públicas | Los alumnos harán un meta-análisis de tres sets de datos de RNA-seq. Al final tendrán que presentar los resultados obtenidos en un reporte en Rmarkdown (https://rmarkdown.rstudio.com/). Tendrán hasta el 16 de marzo para entregar los resultados finales en un reporte legible. |
+| 30 de abril | Ejercicio de análisis de datos usando bases públicas | Los alumnos harán un meta-análisis de tres sets de datos de RNA-seq. Al final tendrán que presentar los resultados obtenidos en un reporte en Rmarkdown (https://rmarkdown.rstudio.com/). Tendrán hasta el 16 de marzo para entregar los resultados finales en un reporte legible. |
+
+
+
+# Tarea 1
+
+Necesito que busques un artículo que quieras replicar, lo leas y tengas clara 
+una figura que quieras hacer. Ten en cuenta lo siguiente:
+
+- Datos públicos y disponibles
+
+- Tamaño de los archivos
+
+- Información completa 
+
+- Tema de tu interés 
+
+
+

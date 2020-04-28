@@ -1,0 +1,733 @@
+---
+title: "Repositorios públicos de datos"
+subtitle: "1: Revisión de bases de datos públicas con datos NGS"
+author: "Ana BVA"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: ["css/xaringan-themer.css","css/custom.css"]
+    seal: false
+    nature:
+      highlightStyle: solarized-light
+      highlightLines: true
+      countIncrementalSlides: false
+      navigation:
+        scroll: false # disable slide transitions by scrolling
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  #base_color = "#195f9c",
+  header_font_google = google_font("Amatic SC"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  base_font_size = "24px"
+)
+
+```
+
+
+
+```{r, include=FALSE}
+library(RefManageR)
+
+BibOptions(
+  check.entries = FALSE, 
+  bib.style = "authoryear", 
+  cite.style = "authoryear", 
+  style = "markdown",
+  hyperlink = FALSE, 
+  dashed = FALSE)
+
+bib <- ReadBib("data/bibliografia.bib")
+
+```
+
+class: inverse, center, title-slide, middle
+
+<img height="160px" width="140px" style="position: absolute; top: 0; left: 2%; border: 1;" src= "https://liigh.unam.mx/wp-content/uploads/2016/05/logo-liigh-unam.png">
+
+# .content-box-purple[.black[Repositorios públicos de datos]]
+
+## 1: Revisión de bases de datos públicas con datos NGS
+
+
+### .content-box-red[.black[Ana BVA]]
+
+###  .small[`r Sys.Date()`]
+
+
+
+
+
+
+---
+
+# Objetivo
+
+Presentación a los alumnos de las principales bases de datos públicas con datos NGS, sus formas de acceso e identificación de anotación de datos.
+
+<img height="390px" width="700px" style="position: absolute; top: 280px; left: 110px;" src= "fig/organismos3.png">
+
+
+---
+
+# Kahoot
+
+[Quiz](https://play.kahoot.it/v2/?quizId=ce95a065-5e38-4142-80df-65c297e83421)
+
+[Rueda](https://wheelofnames.com/)
+
+<img src="https://images.readwrite.com/wp-content/uploads/2019/08/Why-You-Love-Online-Quizzes-825x500.jpg">
+
+---
+
+# Bases de datos genomicas
+
+[INSDC es "International Nucleotide Sequence Database Collaboration"](http://www.insdc.org/)
+
+<img height="73%"  style="position: absolute; top: 190px; left: 200px;" src= "https://www.ddbj.nig.ac.jp/images/center/insdc_shoukai.gif">
+
+
+---
+
+# Tipos de datos 
+
+
+| Data type             | DDBJ                  | EMBL-EBI                         | NCBI                  |
+|-----------------------|-----------------------|----------------------------------|-----------------------|
+| Next generation reads | Sequence Read Archive | European NucleotideArchive (ENA) | Sequence Read Archive |
+| Capillary reads       | Trace Archive         | Trace Archive                    | Trace Archive         |
+| Annotated sequences   | DDBJ                  |                                  | GenBank               |
+| Samples               | BioSample             |                                  | BioSample             |
+| Studies               | BioProject            | BioProject                      | BioProject            |
+
+.bib[
+`r  Citet(bib,"brooksbank2014european")`
+]
+
+---
+
+## EMBL-EBI
+
+
+<img height="500px" width="600px" style="position: absolute; top: 140px; left: 150px;" src= "https://www.researchgate.net/profile/Cath_Brooksbank/publication/258854691/figure/fig1/AS:202721891229703@1425344073456/EMBL-EBIs-core-data-resources-The-figure-summarizes-the-resources-described-in-this.png">
+
+
+
+.bib[
+`r  Citet(bib,"brooksbank2014european")`
+]
+
+
+---
+
+## NCBI
+
+.scroll-output[.code60[
+
+```{r, eval=require('DT'), tidy=TRUE}
+ncbi <- read.csv("data/ncbi_db.csv")
+
+font.size <- "80%"
+
+ncbi %>%
+  DT::datatable(fillContainer = FALSE, 
+                rownames = FALSE,
+                 options=list(initComplete = htmlwidgets::JS("function(settings, json) {",
+          paste0("$(this.api().table().container()).css({'font-size': '", 
+                 font.size, 
+                 "'});"),
+          "}")
+       ))
+
+```
+]]
+
+.bib[
+`r  Citet(bib,"coordinators2017database")`
+]
+
+
+---
+
+class: title-slide
+background-image: url("https://www.labiotech.eu/wp-content/uploads/2020/01/Cloud-genomics-gene-sequencing.jpg")
+background-position: -500% 0%, 0% 0%
+background-size: 1000px
+background-color: #0148A4
+
+
+.pull-left[
+.white[
+
+# Ejercicio 1
+
+- Busca el genoma de un organismo. 
+
+Anota tu respuesta en:
+.content-box-purple[.black[[link](https://docs.google.com/document/d/1yW_FsQ0W-ok4eLRVauU93lc2XgTBeLi9loJfc8NAp8M/edit?usp=sharing)]]
+
+- ¿Cuál es el formato?
+
+
+]]
+
+.footnote[
+.content-box-red[
+[Rueda](https://wheelofnames.com/)
+]]
+
+---
+
+class: title-slide
+background-image: url("https://www.labiotech.eu/wp-content/uploads/2020/01/Cloud-genomics-gene-sequencing.jpg")
+background-position: -500% 0%, 0% 0%
+background-size: 1000px
+background-color: #0148A4
+
+
+.pull-left[
+.white[
+
+# Ejercicio 2
+
+Obten la secuencia del mRNA para el gen *ACE2*
+
+- Usa Ensembl
+
+- ¿Qué otras formas existen?
+
+
+]]
+
+
+.footnote[
+.content-box-red[
+[Rueda](https://wheelofnames.com/)
+]]
+
+---
+
+## Descarga sequencias
+
+- Websites: [NCBI](https://www.ncbi.nlm.nih.gov/geo/), [Ensembl](https://www.ensembl.org/index.html)
+
+- wget
+
+- perl: [Biomart (ensembl)](https://www.ensembl.org/biomart/martview/183d0ab3b960bb445f6ecc7c73d492c6)
+
+- R: [Biomart (ensembl)](https://bioconductor.org/packages/release/bioc/vignettes/biomaRt/inst/doc/biomaRt.html)
+
+- [E-utilities de NCBI](https://www.ncbi.nlm.nih.gov/books/NBK179288/?report=classic) ([Cookbook](https://github.com/NCBI-Hackathons/EDirectCookbook))
+
+
+---
+## Descarga de datos: .content-box-purple[.black[NCBI]]
+
+ [E-utilities de NCBI](https://www.ncbi.nlm.nih.gov/books/NBK179288/?report=classic) (Para mayor información se puede consular el [Cookbook](https://github.com/NCBI-Hackathons/EDirectCookbook))
+
+
+Entrez funciones:
+
+- _esearch:_ Busqueda con los terms
+
+- _elink:_ Busca links entre bases
+
+- _efilter:_ filtra busquedas.
+
+- _efetch:_  Descarga records o reportes 
+
+- _xtract:_ Cambio de formato XML a tabla
+
+
+.bib[
+`r  Citet(bib,"kans2020entrez")`
+]
+
+
+
+---
+
+## Descarga de datos: .content-box-purple[.black[NCBI]]
+
+Se puede hacer busquedas desde linea de comando 
+
+.scroll-output[.code60[
+
+Entramos al cluster
+```{bash eval=FALSE}
+ssh -X aaltamirano@dna.lavis.unam.mx
+```
+
+Activamos un nodo y descargamos el modulo 
+```{bash eval=FALSE}
+qrsh
+module load e-utilities/27abr20
+```
+
+Podemos buscar artículos en pubmed
+
+```{bash eval=FALSE}
+ esearch -db pubmed -query "COPD transcriptomics"
+```
+
+
+También podemos usar los "terms" de NCBI
+
+```{bash eval=FALSE}
+esearch -db pubmed -query "COPD Barnes PJ[Author]"
+```
+
+Y obtener los abstracts 
+
+```{bash eval=FALSE}
+esearch -db pubmed -query "COPD transcriptomics" | efetch -format abstract
+```
+
+Se pueden guardar en una tabla
+
+```{bash eval=FALSE}
+ esearch -db pubmed -query "COPD transcriptomics" |
+  elink -related |
+  efilter -query "homo sapiens" |
+  efetch -format docsum |
+  xtract -pattern DocumentSummary -element Id SortFirstAuthor Title
+```
+
+También podemos obtener secuencias de protienas
+
+```{bash eval=FALSE}
+esearch -db protein -query "(CYP1A1[GENE] ) AND Mus musculus[Organism] " | 
+efetch -format fasta
+```
+
+o secuencia nucleotídica 
+
+```{bash eval=FALSE}
+esearch -db nucleotide -query "(CYP1A1 [GENE]) AND Mus musculus[ORGN] " | 
+efetch -format fasta
+```
+
+También se pueden conseguir solo las coordenadas de inicio y fin
+
+```{bash eval=FALSE}
+ esearch -db gene -query "(CYP1A1 [GENE]) AND Mus musculus[ORGN]" |
+  efetch -format docsum |
+  xtract -pattern GenomicInfoType -element ChrAccVer ChrStart ChrStop
+```
+
+]]
+
+.bib[
+`r  Citet(bib,"kans2020entrez")`
+]
+
+---
+class: segue-red
+
+# .white[Descarga de datos NGS]
+
+
+---
+
+## Descarga datos NGS
+
+### Pasos 
+
+1. Elegir el experimento para descargar 
+
+2. Elegir si se quieren datos RAW o datos pre-procesados
+
+3. Elegir como descargarlos
+
+---
+
+## Descarga datos NGS
+
+### Opciones
+
+- Websites: [NCBI](https://www.ncbi.nlm.nih.gov/geo/), [ArrayExpress]()
+
+- wget
+
+- [SRA Toolkit](https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/#download-sequence-data-files-usi)
+
+- [E-utilities de NCBI](https://www.ncbi.nlm.nih.gov/books/NBK179288/?report=classic) ([Cookbook](https://github.com/NCBI-Hackathons/EDirectCookbook))
+
+- R: [GEOquery],[SRAdb],[GEOmeta]
+
+- [Recount](https://jhubiostatistics.shinyapps.io/recount/) para datos de RNAseq en humano
+
+---
+
+class: segue
+
+# .white[Descarga de datos NGS]
+
+## .white[A) Descarga de datos pre-procesados]
+
+---
+## GEO de NCBI
+
+Gene Expression Omnibus [(GEO)](https://www.ncbi.nlm.nih.gov/geo/)  es un repositorio con datos genómicos en donde los autores pueden subir los datos usados en los artículos. Podemos encontrar la información de:
+
+- Experimentos: GSE 
+
+- Muestras: GSM 
+
+- Plataformas: GPL 
+
+- Datos curados:GDS 
+
+<blockquote>
+Generalmente se encuentran los datos pre-procesados y en ocasiones los datos crudos en el material supplementario. 
+</blockquote>
+
+.content-box-red[Ojo: DEPENDE DE CADA EXPERIMENTO]
+
+
+---
+## GEO de NCBI
+
+Ejemplo: 
+
+[GSE59760](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE59760)
+
+<img height="400px" width="800px" style="position: absolute; top: 300px; left: 10px;" src= "https://www.ncbi.nlm.nih.gov/geo/img/submission_overview.jpg">
+
+---
+
+class: title-slide
+background-image: url("https://www.labiotech.eu/wp-content/uploads/2020/01/Cloud-genomics-gene-sequencing.jpg")
+background-position: -500% 0%, 0% 0%
+background-size: 1000px
+background-color: #0148A4
+
+
+.pull-left[
+.white[
+
+
+# Ejercicio 3
+
+.font60[
+De los datos de .content-box-blue[[GSE59760](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE59760)]
+
+- ¿Cuantas muestras tiene?
+
+- ¿Qué plataforma usa?
+
+- ¿En que fecha se subieron los datos?
+
+- ¿Cuanto pesan los archivos?
+
+- Es SINGLE END o PAIRED ¿?
+
+- ¿Qué es un archivo .SOFT?
+]]]
+
+
+.footnote[
+.content-box-red[
+[Rueda](https://wheelofnames.com/)
+]]
+---
+
+## A) Descarga de datos pre-procesados: .content-box-purple[.black[wget]]
+
+Descargaremos los datos pre-procesados del proyecto [SRP044833](https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=SRP044833)
+
+Para decargar los datos pre-procesados ocupamos el 
+id de GEO: [GSE59760](https://www.ncbi.nlm.nih.gov//geo/query/acc.cgi?acc=GSE59760)
+
+.content-box-red[Ojo: son gene counts]
+
+Y usamos la dirección de [ftp](https://ftp.ncbi.nlm.nih.gov/geo) para descargarlos.
+
+<blockquote>
+https://ftp.ncbi.nlm.nih.gov/geo/series/GSE59nnn/GSE59760/
+</blockquote>
+
+Y descargamos los datos usando wget
+
+```{bash eval=FALSE}
+wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE59nnn/GSE59760/suppl/GSE59760_supplementations_rnaseq.csv.gz
+gunzip GSE67218_Eco_LB_RPKM.txt.gz
+```
+
+
+---
+
+## A) Descarga de datos pre-procesados: .content-box-purple[.black[GEOquery]]
+
+.scroll-output[.pre[
+
+`GEOquery` es una libreria de R que se encuentra dentro de los paquetes de 
+`Bioconductor`. Para mayor información utiliza la [vignette](https://www.bioconductor.org/packages/release/bioc/vignettes/GEOquery/inst/doc/GEOquery.html)
+
+
+
+```{r message=FALSE, warning=FALSE}
+library(GEOquery)
+```
+
+Se obtienen los datos que se encuentran en el `.SOFT` file
+
+```{r message=FALSE, warning=FALSE}
+gse <- getGEO("GSE59760", GSEMatrix = FALSE)
+```
+
+
+```{r}
+head(Meta(gse))
+```
+
+Pero también podemos guardar la información en un objeto `ExpressionSet`
+
+```{r}
+gse <- getGEO("GSE59760")
+gse
+```
+
+Podemos usar funciones específicas para el objeto
+
+```{r}
+pData(gse[[1]])
+```
+
+¿Qué pasa con los datos?
+
+```{r}
+exprs(gse[[1]])
+```
+
+Podemos descargar los datos que se encuentran en el material supplementario 
+
+```{r}
+# fetch_files TRUE, then actually download the files
+# supp <- getGEOSuppFiles("GSE59760", fetch_files = TRUE)
+sfile <-  "/Users/user/Documents/Doctorado/Courses/Taught/Bioinfo2/GSE59760/GSE59760_supplementations_rnaseq.csv.gz"
+
+#Leer el archivo descargado
+csv <- read.csv(sfile, row.names = 1)
+```
+
+**OJO** Los datos no siempre son lo que parece. ¿Cuantas columan son?
+
+```{r}
+dim(csv)
+head(csv)
+# Quitamos las primeras dos columnas porque no estan reportadas en GEO
+csv <- csv[,-c(1:2)]
+```
+
+Podemos crear un nuevo objeto `ExpressionSet` con los datos.
+
+```{r}
+# Reasignamos el nombre de las columnas
+colnames(csv)[pData(gse[[1]])[,1]] <- pData(gse[[1]])[,2]
+head(csv)
+```
+
+Tenemos nuestro nuevo objeto
+
+```{r}
+eset2 <- new('ExpressionSet',exprs=as.matrix(csv),phenoData=phenoData(gse[[1]]))
+```
+
+]]
+
+---
+
+## A) Descarga de datos pre-procesados: .content-box-purple[.black[Recount]]
+
+.scroll-output[.pre[
+
+<blockquote>
+`Recount` es un repositorio donde podemos encontrar los datos pre-procesados de humano. 
+</blockquote>
+
+Tiene una libreria de R que se encuentra dentro de los paquetes de 
+`Bioconductor`. Para mayor información puedes checar la [página](https://jhubiostatistics.shinyapps.io/recount/) o utiliza la [vignette](http://bioconductor.org/packages/release/bioc/html/recount.html). 
+
+
+```{r message=FALSE, warning=FALSE}
+library(recount)
+```
+
+Necesitamos el ID de SRA (SRP) para descargar el experimento
+
+```{r }
+url <- download_study('SRP009615')
+```
+
+Descargamos los datos 
+
+```{r }
+load(file.path('SRP009615', 'rse_gene.Rdata'))
+```
+
+Leemos los datos
+
+```{r}
+rse <- scale_counts(rse_gene)
+rse
+```
+
+]]
+---
+
+class: segue
+
+# .white[Descarga de datos NGS]
+
+## .white[B) Descarga de datos Curdos]
+
+
+---
+
+
+## B) Descarga de datos Curdos: .content-box-purple[.black[SRA Toolkit]]
+
+.scroll-output[.pre[
+
+Para mayor información, se puede consultar la documentación de [SRA Toolkit](https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/) y el [handbook](https://www.ncbi.nlm.nih.gov/sites/books/NBK242621/)
+
+
+Entramos al cluster 
+
+```{bash eval=FALSE}
+ssh -X aaltamirano@dna.lavis.unam.mx
+```
+
+Descargamos en el ambiente el modulo de `SRA Toolkit`
+
+```{bash eval=FALSE}
+qrsh
+module load sra/2.9.6-1
+```
+
+Tenemos que configurar el directorio de salida. Por default es en `/home/user`
+
+```{bash eval=FALSE}
+echo "/home/amedina/amedinalab/aaltamirano/Bioinfo2/NGSdata/ncbi = \"$DATA\"" > $HOME/.ncbi/user-settings.mkfg
+```
+
+Opcionalmente podemos intentar con el modulo gráfico 
+
+```{bash eval=FALSE}
+# vdb-config -i
+```
+
+Ocuparemos la función `fasterq-dump`, la cual tiene la ayuda usando `--help`
+
+```{bash eval=FALSE}
+fasterq-dump --help
+```
+
+Podemos descargar los archivos usando `fasterq-dump`
+
+```{bash eval=FALSE}
+# Podemos ver las primero 5 secuencias en la pantalla
+fastq-dump -X 5 -Z SRR000001
+# Descargamos los datos
+fasterq-dump SRR000001 -O .
+```
+
+
+]]
+
+
+---
+
+## B) Descarga de datos Curdos: .content-box-purple[.black[E-utilities]] y .content-box-purple[.black[SRA Toolkit]]
+
+Podemos ocupar las dos herramientas para descargar los archivos en formato fasta
+
+.scroll-output[.pre[
+
+Podemos ocupar `E-utilities`para obterner los SRR ids, usando el id de [`SRP044833`](https://trace.ncbi.nlm.nih.gov/Traces/study/?acc=SRP044833).
+
+```{bash eval=FALSE}
+esearch -db sra -query "SRP044833" |  efetch -format docsum |./xtract.Linux -pattern Runs -ACC @acc  -element "&ACC"
+```
+
+Podemos saber el tamaño de los archivos en cantidad de `bases` y/o `MB`
+
+```{bash eval=FALSE}
+esearch -db sra -query "SRP044833" |  esummary -format runinfo -mode xml | ./xtract.Linux -pattern Row -element Run,size_MB,bases
+```
+
+
+Ahora podemos usar la funcion de `fastq-dump` para descargar los fasta, en este ejemplo solo descargamos las 10 primeras secuencias usando `xargs fastq-dump -X 10 --split-files`
+
+```{bash eval=FALSE}
+esearch -db sra -query "SRP044833" |  efetch -format docsum |./xtract.Linux -pattern Runs -ACC @acc  -element "&ACC" | xargs fastq-dump -X 10 --split-files
+```
+
+
+]]
+
+---
+
+
+## B) Descarga de datos Curdos: .content-box-purple[.black[library(SRAdb)]]
+
+También podemos descargarlos usando el paquete de `SRAdb` de `R`. Para mayores
+referencias checar la vigetta del paquete. 
+
+```{r message=FALSE, warning=FALSE}
+library(SRAdb)
+```
+
+Se descarga la base de datos. En nuestro caso, leer desde mi `path`
+```{r eval=FALSE}
+# srafile = getSRAdbFile()  # Hacer esto para descargar la Base de datos
+sqlfile <- file.path('/home/amedina/amedinalab/aaltamirano/Bioinfo2/NGSdata/SRAmetadb.sqlite')
+```
+
+Nos conectamos a la Base de Datos
+
+```{r eval=FALSE}
+sra_con = dbConnect(RSQLite::SQLite(), sqlfile)
+```
+
+Podemos hacer busquedas
+
+```{r eval=FALSE}
+rs <- dbGetQuery(sra_con, paste( "select study_accession,
+ study_title from study where",
+ "study_description like 'Transcriptome%'",sep=" "))
+
+getSRA( search_terms = "breast cancer", out_types = c('run','study'), sra_con )
+
+ls <- listSRAfile ( c("SRX000122"), sra_con, fileType = 'fastq', srcType='fasp')
+
+getSRAfile( ls$run, sra_con, fileType ='sra', srcType = "ftp" )
+```
+
+```{r eval=FALSE}
+rs = listSRAfile( c('SRP044833'), sra_con, fileType = 'sra' )
+
+listSRAfile ( c('SRP044833'), sra_con, fileType = 'fastq', srcType='fasp')
+
+```
+
+---
+
+# R session information 
+
+.scroll-output[.code60[
+
+```{r}
+sessioninfo::session_info()
+```
+
+]]
+
