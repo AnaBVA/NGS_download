@@ -656,20 +656,20 @@ Podemos ocupar las dos herramientas para descargar los archivos en formato fasta
 Podemos ocupar `E-utilities`para obterner los SRR ids, usando el id de [`SRP044833`](https://trace.ncbi.nlm.nih.gov/Traces/study/?acc=SRP044833).
 
 ```{bash eval=FALSE}
-esearch -db sra -query "SRP044833" |  efetch -format docsum |./xtract.Linux -pattern Runs -ACC @acc  -element "&ACC"
+esearch -db sra -query "SRP044833" |  efetch -format docsum | xtract -pattern Runs -ACC @acc  -element "&ACC"
 ```
 
 Podemos saber el tamaño de los archivos en cantidad de `bases` y/o `MB`
 
 ```{bash eval=FALSE}
-esearch -db sra -query "SRP044833" |  esummary -format runinfo -mode xml | ./xtract.Linux -pattern Row -element Run,size_MB,bases
+esearch -db sra -query "SRP044833" |  esummary -format runinfo -mode xml | xtract -pattern Row -element Run,size_MB,bases
 ```
 
 
 Ahora podemos usar la funcion de `fastq-dump` para descargar los fasta, en este ejemplo solo descargamos las 10 primeras secuencias usando `xargs fastq-dump -X 10 --split-files`.
 
 ```{bash eval=FALSE}
-esearch -db sra -query "SRP044833" |  efetch -format docsum |./xtract.Linux -pattern Runs -ACC @acc  -element "&ACC" | xargs fastq-dump -X 10 --split-files
+esearch -db sra -query "SRP044833" |  efetch -format docsum | xtract -pattern Runs -ACC @acc  -element "&ACC" | xargs fastq-dump -X 10 --split-files
 ```
 
 
@@ -686,13 +686,15 @@ También podemos descargarlos usando el paquete de `SRAdb` de `R`. Para mayores
 referencias checar la vigetta del paquete. 
 
 ```{r message=FALSE, warning=FALSE}
+# https://github.com/Bioconductor/BiocWorkshops/blob/master/103_Waldron_PublicData.Rmd
 library(SRAdb)
 ```
 
 Se descarga la base de datos. En nuestro caso, leer desde mi `path`
 ```{r eval=FALSE}
 # srafile = getSRAdbFile()  # Hacer esto para descargar la Base de datos
-sqlfile <- file.path('/home/amedina/amedinalab/aaltamirano/Bioinfo2/NGSdata/SRAmetadb.sqlite')
+sqlfile <- file.path(system.file('extdata', package='SRAdb'), 'SRAmetadb_demo.sqlite')
+#sqlfile <- file.path('/home/amedina/amedinalab/aaltamirano/Bioinfo2/NGSdata/SRAmetadb.sqlite')
 ```
 
 Nos conectamos a la Base de Datos
@@ -704,13 +706,37 @@ sra_con = dbConnect(RSQLite::SQLite(), sqlfile)
 Podemos hacer busquedas
 
 ```{r eval=FALSE}
-rs <- dbGetQuery(sra_con, paste( "select study_accession,
+rs <- dbGetQuery(sra_con, 
+paste( "select study_accession,
  study_title from study where",
- "study_description like 'Transcriptome%'",sep=" "))
+ "study_description like 'COPD%'",sep=" "))
+```
 
+Buscamos los ids de las corridas
+
+```{r eval=FALSE}
 ls = listSRAfile( c('SRP044833'), sra_con, fileType = 'sra' )
+in_acc = ls$run
+# in_acc = c("SRR000648","SRR000657")
+```
 
-getSRAfile( ls$run, sra_con, fileType ='sra', srcType = "ftp" )
+Descargamos los datos
+
+```{r eval=FALSE}
+getSRAfile( in_acc, sra_con, 
+            destDir = getwd(), 
+            fileType = 'fastq', 
+            srcType = 'ftp', 
+            makeDirectory = FALSE, 
+            method = 'curl', 
+            ascpCMD = NULL )
+	
+```
+
+Nos desconectamos
+
+```{r eval=FALSE}
+dbDisconnect( sra_con )
 ```
 
 
